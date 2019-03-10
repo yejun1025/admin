@@ -36,11 +36,11 @@ export default {
         rules:{
            username: [
             { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+            { min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur' }
           ],
            password: [
             { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+            { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
           ],
        }
       };
@@ -51,7 +51,20 @@ export default {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             //   正确
-            alert('submit!');
+            // alert('submit!');
+            this.$http.post('login',this.formdata).then(res=>{
+                console.log(res);
+                if(res.data.meta.status==400){
+                    this.$message.error(res.data.meta.msg)
+                }else {
+                  
+                     this.$message.success(res.data.meta.msg)
+                     sessionStorage.setItem('token',res.data.data.token);
+                     this.$router.push('/index');
+                    
+                }
+                
+            })
           } else {
             //   错误
              this.$message.error('请正确输入账号和密码');

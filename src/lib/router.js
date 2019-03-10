@@ -6,9 +6,12 @@ import VueRouter from 'Vue-router'
 Vue.use(VueRouter);
 import login from '../components/login.vue'
 
+import index from '../components/index.vue'
+
 const routes = [
     { path: '/', component: login },
-    { path: '/login', component: login }
+    { path: '/login', component: login },
+    { path: '/index', component: index }
   ]
   
   // 3. 创建 router 实例，然后传 `routes` 配置
