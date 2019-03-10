@@ -1,7 +1,5 @@
 <template>
-  <div>
-    叶俊是帅哥
-  </div>
+  <router-view></router-view>
 </template>
 <script>
 export default {
